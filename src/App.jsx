@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+
+const urlApi = 'http://localhost:9999/'
 
 class App extends Component {
     state = {
@@ -7,13 +10,20 @@ class App extends Component {
     }
 
     onSubmitClick = () => {
-        console.log(this.state.nameInput)
+        axios.post(
+            urlApi + 'postitem',
+            {
+                imagesName : this.state.nameInput
+            }
+        )
+
+        // console.log(this.state.nameInput)
     }
 
     render() {
         return (
             <div>
-                <h1 className="text-center"> App component </h1>
+                <h1 className="text-center"> Challenge </h1>
                 <input type="text" onChange={(e) => {this.setState({nameInput: e.target.value})}}/>
                 <button onClick={this.onSubmitClick} >submit</button>
             </div>
